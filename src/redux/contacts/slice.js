@@ -1,8 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initailContacts } from 'utils/initialContacts';
+// import { initailContacts } from 'utils/initialContacts';
 
 const initialState = {
-  contacts: initailContacts,
+  contacts: {
+    items: [],
+    isLoading: false,
+    error: null,
+  },
   filter: '',
 };
 
@@ -14,10 +18,6 @@ export const contactsSlice = createSlice({
       state.contacts.push(action.payload);
     },
     remove(state, action) {
-      // let fileredList = state.contacts.filter(
-      //   item => item.id !== action.payload
-      // );
-      // state.contacts = fileredList;
       const index = state.contacts.findIndex(
         item => item.id === action.payload
       );
