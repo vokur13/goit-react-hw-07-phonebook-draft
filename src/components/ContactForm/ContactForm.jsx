@@ -8,7 +8,7 @@ import { Button } from '../Button';
 
 export const ContactForm = ({ onFormSubmit }) => {
   const nameId = nanoid();
-  const numberID = nanoid();
+  const phoneID = nanoid();
 
   //   const [isActive, setIsActive] = useState(false);
 
@@ -19,7 +19,7 @@ export const ContactForm = ({ onFormSubmit }) => {
     //     watch,
     formState,
     formState: { errors, isSubmitSuccessful },
-  } = useForm({ defaultValues: { name: '', number: '' } });
+  } = useForm({ defaultValues: { name: '', phone: '' } });
 
   const onSubmit = data => {
     onFormSubmit(data);
@@ -27,7 +27,7 @@ export const ContactForm = ({ onFormSubmit }) => {
 
   useEffect(() => {
     if (formState.isSubmitSuccessful) {
-      reset({ name: '', number: '' });
+      reset({ name: '', phone: '' });
     }
   }, [formState, isSubmitSuccessful, reset]);
 
@@ -57,19 +57,19 @@ export const ContactForm = ({ onFormSubmit }) => {
         {errors.name?.type === 'required' && (
           <p role="alert">Name is required</p>
         )}
-        <Label htmlFor={numberID}>Number</Label>
+        <Label htmlFor={phoneID}>Number</Label>
         <Input
-          id={numberID}
+          id={phoneID}
           type="tel"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          {...register('number', {
+          {...register('phone', {
             required: 'Phone number is required',
             pattern:
               /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/i,
           })}
-          aria-invalid={errors.number ? 'true' : 'false'}
+          aria-invalid={errors.phone ? 'true' : 'false'}
         />
-        {errors.number && <p role="alert">{errors.number?.message}</p>}
+        {errors.phone && <p role="alert">{errors.phone?.message}</p>}
         {/* <input type="submit" /> */}
         <Button type="submit">Add contact</Button>
       </Form>

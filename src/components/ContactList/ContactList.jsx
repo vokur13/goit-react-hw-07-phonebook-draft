@@ -17,7 +17,7 @@ export const ContactList = ({ list, onDelete }) => {
         {list.map(item => (
           <Item key={item.id}>
             <Name>{item.name + ':'}</Name>
-            <Number>{item.number}</Number>
+            <Number>{item.phone}</Number>
             <Button
               type="button"
               onClick={() => {
@@ -33,17 +33,13 @@ export const ContactList = ({ list, onDelete }) => {
   );
 };
 
-ContactList.propTypes = {
-  list: PropTypes.arrayOf(
-    PropTypes.exact({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
-  onDelete: PropTypes.func.isRequired,
-};
-
-// {
-//   list, onDelete;
-// }
+// ContactList.propTypes = {
+//   list: PropTypes.arrayOf(
+//     PropTypes.exact({
+//       id: PropTypes.string.isRequired,
+//       name: PropTypes.string.isRequired,
+//       number: PropTypes.string.isRequired,
+//     })
+//   ),
+//   onDelete: PropTypes.func.isRequired,
+// };
