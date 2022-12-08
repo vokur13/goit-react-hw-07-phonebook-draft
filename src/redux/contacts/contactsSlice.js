@@ -84,13 +84,14 @@ export const contactsSlice = createSlice({
   //     );
   //     state.contacts.splice(index, 1);
   //   },
-  //   findContact(state, action) {
-  //     state.filter = action.payload;
-  //   },
+  // findContact(state, action) {
+  //   state.filter = action.payload;
+  // },
   // },
 });
 
 export const contactsReducer = contactsSlice.reducer;
+// export const { findContact } = contactsSlice.actions;
 
 // export const { fetchingInProgress, fetchingSuccess, fetchingError } =
 //   contactsSlice.actions;

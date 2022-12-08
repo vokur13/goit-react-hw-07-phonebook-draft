@@ -14,14 +14,15 @@ import { Filter } from '../components/Filter';
 import { ContactList } from '../components/ContactList';
 import { nanoid } from 'nanoid';
 
-// import { add, remove, findContact } from '../redux/contacts/contactsSlice';
+// import { findContact } from '../redux/contacts/contactsSlice';
 
 export const App = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
   const items = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  // const filter = useSelector(getFilter);
+  // const filter = useSelector(state => state.contacts.filter);
 
   // Получаем части состояния
   // const { items, isLoading, error } = useSelector(getContacts);
@@ -42,7 +43,7 @@ export const App = () => {
   }
 
   function onFilterChange([value]) {
-    !value ? dispatch(findContact((value = ''))) : dispatch(findContact(value));
+    // !value ? dispatch(findContact((value = ''))) : dispatch(findContact(value));
   }
 
   // const filteredContacts = useMemo(() => {
