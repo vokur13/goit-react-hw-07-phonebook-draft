@@ -1,7 +1,15 @@
 import { useMemo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchContacts, addContact, deleteContact } from 'redux/operations';
-import { selectError, selectIsLoading, selectContacts } from 'redux/selectors';
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+} from 'redux/contacts/contactsOperations';
+import {
+  selectError,
+  selectIsLoading,
+  selectContacts,
+} from 'redux/contacts/contactsSelectors';
 import { Box } from '../components/Box';
 import { ContactForm } from '../components/ContactForm';
 import { Filter } from '../components/Filter';
