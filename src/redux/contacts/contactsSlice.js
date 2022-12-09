@@ -22,11 +22,11 @@ const initialState = {
 export const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
-  reducers: {
-    findContact(state, action) {
-      state.filter = action.payload;
-    },
-  },
+  // reducers: {
+  //   findContact(state, action) {
+  //     state.filter = action.payload;
+  //   },
+  // },
   extraReducers: {
     [fetchContacts.pending]: handlePending,
     [addContact.pending]: handlePending,
@@ -56,4 +56,4 @@ export const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-export const { findContact } = contactsSlice.actions;
+// export const { findContact } = contactsSlice.actions;
