@@ -1,32 +1,25 @@
 import { useMemo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  fetchContacts,
-  addContact,
-  deleteContact,
-} from 'redux/contacts/contactsOperations';
-import {
-  selectError,
-  selectIsLoading,
-  selectContacts,
-} from 'redux/contacts/contactsSelectors';
-import { Box } from '../components/Box';
-import { ContactForm } from '../components/ContactForm';
-import { Filter } from '../components/Filter';
-import { ContactList } from '../components/ContactList';
+  contactsOperations,
+  contactsActions,
+  contactsSelectors,
+} from 'redux/contacts';
+import { Box } from 'components/Box';
+import { ContactForm } from 'components/ContactForm';
+import { Filter } from 'components/Filter';
+import { ContactList } from 'components/ContactList';
 import { nanoid } from 'nanoid';
-
-// import { findContact } from '../redux/contacts/contactsSlice';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-  const items = useSelector(selectContacts);
-  // const filter = useSelector(state => state.contacts.filter);
+  const isLoading = useSelector(contactsSelectors.selectIsLoading);
+  const error = useSelector(contactsSelectors.selectError);
+  const items = useSelector(contactsSelectors.selectContacts);
+  const filter = useSelector(contactsSelectors.selectFilter);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(contactsOperations.fetchContacts());
   }, [dispatch]);
 
   function handleSubmit({ name, phone }) {
@@ -35,27 +28,29 @@ export const App = () => {
     );
     checkName
       ? alert(`${name} is already in contacts`)
-      : dispatch(addContact({ id: nanoid(), name, phone }));
+      : dispatch(contactsOperations.addContact({ id: nanoid(), name, phone }));
   }
 
   function onFilterChange([value]) {
-    // !value ? dispatch(findContact((value = ''))) : dispatch(findContact(value));
+    !value
+      ? dispatch(contactsActions.findContact((value = '')))
+      : dispatch(contactsActions.findContact(value));
   }
 
-  // const filteredContacts = useMemo(() => {
-  //   if (filter) {
-  //     return items.filter(item => {
-  //       return item.name
-  //         .toLowerCase()
-  //         .trim()
-  //         .includes(filter.toLowerCase().trim());
-  //     });
-  //   }
-  //   return items;
-  // }, [filter, items]);
+  const filteredItems = useMemo(() => {
+    if (filter) {
+      return items.filter(item => {
+        return item.name
+          .toLowerCase()
+          .trim()
+          .includes(filter.toLowerCase().trim());
+      });
+    }
+    return items;
+  }, [filter, items]);
 
   function handleDelete(itemID) {
-    dispatch(deleteContact(itemID));
+    dispatch(contactsOperations.deleteContact(itemID));
   }
 
   return (
@@ -67,8 +62,7 @@ export const App = () => {
       <Filter onChange={onFilterChange} />
       {isLoading && <p>Loading contacts...</p>}
       {items && items.length > 0 && (
-        // <ContactList onDelete={handleDelete} list={filteredContacts} />
-        <ContactList onDelete={handleDelete} list={items} />
+        <ContactList onDelete={handleDelete} list={filteredItems} />
       )}
     </Box>
   );

@@ -36,6 +36,6 @@ export const Filter = ({ onChange }) => {
   );
 };
 
-// Filter.propTypes = {
-//   onChange: PropTypes.func,
-// };
+Filter.propTypes = {
+  onChange: PropTypes.func,
+};
