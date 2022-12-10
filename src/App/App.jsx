@@ -22,13 +22,22 @@ export const App = () => {
     dispatch(contactsOperations.fetchContacts());
   }, [dispatch]);
 
-  function handleSubmit({ name, phone }) {
+  function handleSubmit({ lastName, firstName, phone }) {
     const checkName = items.some(
-      item => item.name.toLowerCase().trim() === name.toLowerCase().trim()
+      item =>
+        item.lastName.toLowerCase().trim() === lastName.toLowerCase().trim() &&
+        item.firstName.toLowerCase().trim() === firstName.toLowerCase().trim()
     );
     checkName
-      ? alert(`${name} is already in contacts`)
-      : dispatch(contactsOperations.addContact({ id: nanoid(), name, phone }));
+      ? alert(`${(lastName, firstName)} is already in contacts`)
+      : dispatch(
+          contactsOperations.addContact({
+            id: nanoid(),
+            lastName,
+            firstName,
+            phone,
+          })
+        );
   }
 
   function onFilterChange([value]) {
@@ -40,7 +49,7 @@ export const App = () => {
   const filteredItems = useMemo(() => {
     if (filter) {
       return items.filter(item => {
-        return item.name
+        return item.lastName
           .toLowerCase()
           .trim()
           .includes(filter.toLowerCase().trim());

@@ -16,7 +16,7 @@ export const ContactList = ({ list, onDelete }) => {
       <List>
         {list.map(item => (
           <Item key={item.id}>
-            <Name>{item.name + ':'}</Name>
+            <Name>{item.lastName + ', ' + item.firstName + ':'}</Name>
             <Number>{item.phone}</Number>
             <Button
               type="button"
@@ -38,7 +38,8 @@ ContactList.propTypes = {
     PropTypes.exact({
       id: PropTypes.string.isRequired,
       createdAt: PropTypes.string,
-      name: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      firstName: PropTypes.string.isRequired,
       phone: PropTypes.string.isRequired,
     })
   ),

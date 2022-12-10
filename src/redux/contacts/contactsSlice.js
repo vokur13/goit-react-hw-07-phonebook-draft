@@ -54,9 +54,6 @@ export const contactsSlice = createSlice({
         );
         state.items.splice(index, 1);
       })
-      // .addCase(contactsActions.findContact, (state, action) => {
-      //   state.filter = action.payload;
-      // })
       .addCase(findContact, (state, action) => {
         state.filter = action.payload;
       })
