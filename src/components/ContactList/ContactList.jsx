@@ -14,20 +14,26 @@ export const ContactList = ({ list, onDelete }) => {
       boxShadow="basic"
     >
       <List>
-        {list.map(item => (
-          <Item key={item.id}>
-            <Name>{item.lastName + ', ' + item.firstName + ':'}</Name>
-            <Number>{item.phone}</Number>
-            <Button
-              type="button"
-              onClick={() => {
-                onDelete(item.id);
-              }}
-            >
-              Delete
-            </Button>
-          </Item>
-        ))}
+        {list
+          .map(item => (
+            <Item key={item.id}>
+              <Name>{item.lastName + ', ' + item.firstName + ':'}</Name>
+              <Number>{item.phone}</Number>
+              <Button
+                type="button"
+                onClick={() => {
+                  onDelete(item.id);
+                }}
+              >
+                Delete
+              </Button>
+            </Item>
+          ))
+          .sort((a, b) =>
+            a.props.children[0].props.children.localeCompare(
+              b.props.children[0].props.children
+            )
+          )}
       </List>
     </Box>
   );
