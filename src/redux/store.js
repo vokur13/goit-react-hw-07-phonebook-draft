@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+// import { contactsSlice } from './contacts/contactsSlice';
 import { contactsSlice } from './contacts/contactsSlice';
 // import logger from 'redux-logger';
 
