@@ -2,8 +2,8 @@ import { useMemo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   contactsOperations,
-  contactsActions,
   contactsSelectors,
+  contactsSlice,
 } from 'redux/contacts';
 import { Box } from 'components/Box';
 import { ContactForm } from 'components/ContactForm';
@@ -33,8 +33,8 @@ export const App = () => {
 
   function onFilterChange([value]) {
     !value
-      ? dispatch(contactsActions.findContact((value = '')))
-      : dispatch(contactsActions.findContact(value));
+      ? dispatch(contactsSlice.findContact((value = '')))
+      : dispatch(contactsSlice.findContact(value));
   }
 
   const filteredItems = useMemo(() => {
