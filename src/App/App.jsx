@@ -32,11 +32,6 @@ export const App = () => {
   }
 
   function onFilterChange([value]) {
-    // if (value) {
-    //   dispatch(contactsActions.findContact(value));
-    // }
-    // return dispatch(contactsActions.findContact((value = '')));
-
     !value
       ? dispatch(contactsActions.findContact((value = '')))
       : dispatch(contactsActions.findContact(value));
